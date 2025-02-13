@@ -1,0 +1,252 @@
+/* Основные стили страницы 404 */
+.error-page {
+    min-height: calc(100vh - 200px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+    padding: var(--spacing-xl);
+}
+
+.error-container {
+    text-align: center;
+    max-width: 600px;
+    animation: fadeIn 0.8s ease-out;
+}
+
+/* Стили для кода ошибки (404) */
+.error-code {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+}
+
+.digit {
+    font-size: 120px;
+    font-weight: var(--weight-bold);
+    color: var(--primary-color);
+    text-shadow: 2px 2px 0 var(--secondary-color);
+    animation: bounce 2s infinite;
+}
+
+/* Стили для центральной цифры с лицом */
+.digit-middle {
+    width: 120px;
+    height: 120px;
+    background: var(--primary-color);
+    border-radius: var(--radius-circle);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: pulse 2s infinite;
+}
+
+.face {
+    width: 80%;
+    height: 80%;
+    position: relative;
+}
+
+/* Глаза */
+.eyes {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    width: 100%;
+    top: 35%;
+    transform: translateY(-50%);
+    padding: 0 15%;
+}
+
+.eye {
+    width: 12px;
+    height: 12px;
+    background: var(--text-white);
+    border-radius: var(--radius-circle);
+    position: relative;
+    animation: blink 3s infinite;
+}
+
+.pupil {
+    width: 6px;
+    height: 6px;
+    background: var(--secondary-color);
+    border-radius: var(--radius-circle);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Рот */
+.mouth.sad {
+    width: 30px;
+    height: 30px;
+    border: 3px solid var(--text-white);
+    border-radius: 50%;
+    position: absolute;
+    bottom: 15%;
+    left: 50%;
+    transform: translateX(-50%) rotate(180deg) scaleX(0.7);
+    border-top-color: transparent;
+    animation: sadMouth 2s infinite;
+}
+
+/* Текстовые элементы */
+.error-title {
+    font-size: var(--font-2xl);
+    color: var(--secondary-color);
+    margin-bottom: var(--spacing-md);
+    font-weight: var(--weight-bold);
+}
+
+.error-text {
+    font-size: var(--font-mg);
+    color: var(--text-light);
+    margin-bottom: var(--spacing-xl);
+    line-height: var(--line-height-base);
+}
+
+/* Кнопка возврата на главную */
+.error-actions {
+    margin-top: var(--spacing-xl);
+}
+
+.home-button {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm) var(--spacing-xl);
+    background-color: var(--primary-color);
+    color: var(--text-white);
+    border-radius: var(--radius-full);
+    text-decoration: none;
+    font-weight: var(--weight-base);
+    transition: var(--transition-base);
+}
+
+.home-button:hover {
+    background-color: var(--accent-color);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+    color: var(--text-color);
+}
+
+.button-text {
+    font-size: var(--font-base);
+}
+
+.button-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--font-mg);
+}
+
+/* Анимации */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+@keyframes blink {
+    0%, 100% {
+        transform: scaleY(1);
+    }
+    95% {
+        transform: scaleY(1);
+    }
+    97.5% {
+        transform: scaleY(0);
+    }
+}
+
+@keyframes sadMouth {
+    0%, 100% {
+        transform: translateX(-50%) rotate(180deg) scaleX(0.7);
+    }
+    50% {
+        transform: translateX(-50%) rotate(180deg) scaleX(0.6);
+    }
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .error-page {
+        padding: var(--spacing-lg);
+    }
+
+    .digit {
+        font-size: 80px;
+    }
+
+    .digit-middle {
+        width: 80px;
+        height: 80px;
+    }
+
+    .error-title {
+        font-size: var(--font-xl);
+    }
+
+    .error-text {
+        font-size: var(--font-base);
+    }
+}
+
+@media (max-width: 480px) {
+    .digit {
+        font-size: 60px;
+    }
+
+    .digit-middle {
+        width: 60px;
+        height: 60px;
+    }
+
+    .eyes {
+        padding: 0 12%;
+    }
+
+    .eye {
+        width: 8px;
+        height: 8px;
+    }
+
+    .pupil {
+        width: 4px;
+        height: 4px;
+    }
+
+    .mouth.sad {
+        width: 20px;
+        height: 20px;
+    }
+} 

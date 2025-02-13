@@ -1,0 +1,72 @@
+.content-main .card-news,
+.content-tabs .card-news{
+    background: var(--bg-primary);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    transition: transform var(--transition-base);
+    overflow: hidden;
+}
+.content-main .card-news:hover,
+.content-tabs .card-news:hover{
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+.content-main .card-news .card-news-img{
+    position: relative;
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    overflow: hidden;
+}
+.content-main .card-news .card-news-img img,
+.content-tabs .tabs-content .card-news-img img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    overflow: hidden;
+}
+.content-main .card-news .card-news-img a,
+.content-tabs .card-news .card-news-date{
+    position: absolute;
+    top: var(--spacing-sm);
+    left: var(--spacing-sm);
+    background: var(--border-light);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: var(--font-small);
+    color: var(--text-white);
+    text-decoration: none;
+    transition: all var(--transition-base);
+}
+.content-main .card-news .card-news-img a::before,
+.content-tabs .card-news .card-news-date::before{
+    content: "\f073";
+	font-family: "Font Awesome 6 Pro";
+    font-size: var(--font-small);
+    color: var(--text-white);
+    display: inline-block;
+    margin-right: var(--spacing-xs);
+}
+.content-main .card-news .card-news-img a:hover,
+.content-tabs .card-news .card-news-date:hover{
+    background: var(--accent-color);
+    color: var(--text-white);
+}
+.content-main .card-news-content{
+    padding: calc(var(--spacing-sm) + 5px);
+}
+.content-main .card-news-content p{
+    font-size: var(--font-base);
+    color: var(--text-light);
+    line-height: var(--line-height-base);
+}
+.content-main .card-news-content p:last-child{margin-bottom: 0;}
+.content-main .card-news-title{
+    margin-top: 0;
+    padding-bottom: var(--spacing-sm);
+    font-size: var(--font-mg);
+    font-weight: var(--font-fat);
+    color: var(--text-color);
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--border-light);
+}

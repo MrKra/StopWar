@@ -1,0 +1,84 @@
+:root{
+
+     /* Основные цвета сайта */
+    --primary-color: #ff4d00; 
+    /*--accent-color: #ff7940;*/
+    --accent-color: #2196F3;
+    --accent-color-dark: #1976D2;
+    --danger-color: #ff3f04;
+    --success-color: #04a704;
+    --secondary-color: #2c2c2c;
+    --secondary-light: #4d4d4d;
+
+     /* Цвета текста */
+    --text-color: #252525;
+    --text-light: #3d3d3d;
+    --text-white: #ffffff;
+
+     /* Фоновые цвета */
+     --bg-primary: #ffffff;
+     --bg-secondary: #e7e7e7;
+     --bg-dark: #1a1a1a;
+
+     /* Цвета границ и разделителей */
+     --border-color: #e7e7e7;
+     --border-dark: #2c2c2c;
+     --border-light: rgba(44, 44, 44, 0.2);
+
+     /* Тени */
+     --shadow-sm: 0 2px 5px rgba(0, 0, 0, 0.1);
+     --shadow-md: 0 5px 15px rgba(0, 0, 0, 0.2);
+     --shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.3);
+
+     /* Скругления */
+     --radius-sm: 5px;
+     --radius-md: 10px;
+     --radius-lg: 15px;
+     --radius-full: 25px;
+     --radius-circle: 50%;
+
+     /* Размеры шрифтов */
+     --font-small: 0.875rem;  /* Очень маленький текст  14px*/
+     --font-base: 1rem;       /* Базовый размер текста  16px*/
+     --font-mg: 1.25rem;      /* Средний текст  20px*/
+     --font-lg: 1.5rem;       /* Большой текст  24px*/
+     --font-2lg: 1.75rem;     /* Очень большой текст  28px*/
+     --font-xl: 2rem;         /* Очень большой текст  32px*/
+     --font-2xl: 2.25rem;     /* Огромный текст  36px*/
+     --font-3xl: 2.5rem;      /* Очень огромный текст  40px*/
+     --font-4xl: 3rem;        /* Гигантский текст  48px*/
+
+     /* Жирность шрифта */
+     --weight-light: 300;
+     --weight-base: 500;
+     --weight-bold: 800;
+
+     /* Межстрочные интервалы */
+     --line-height-sm: 1.2;
+     --line-height-base: 1.5;
+     --line-height-lg: 1.8;
+
+     /* Анимации */
+     --transition-fast: 0.2s ease;
+     --transition-base: 0.3s ease;
+     --transition-slow: 0.5s ease;
+
+     /* Ссылки */
+     --link-color: var(--text-color);
+     --link-hover: var(--primary-color); 
+     
+     /* Отступы */
+     --spacing-xs: 5px;
+     --spacing-sm: 10px;
+     --spacing-md: 20px;
+     --spacing-lg: 30px;
+     --spacing-xl: 40px;
+     --spacing-2xl: 50px;
+
+     /* Максимальная ширина контейнеров */
+    --container-sm: 640px;             
+    --container-md: 768px;             
+    --container-lg: 1024px;
+    --container-xl: 1360px;
+    --container-xxl: 1400px;
+}

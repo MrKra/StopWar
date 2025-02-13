@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700&display=swap">
+    <link type="text/css" rel="stylesheet" href="styles/fontawesome.css">
+    <link type="text/css" rel="stylesheet" href="styles/variables.css">
+    <link type="text/css" rel="stylesheet" href="slick/slick.css">
+    <link type="text/css" rel="stylesheet" href="slick/slick-theme.css">
+	<link type="text/css" rel="stylesheet" href="styles/styles.css">
+    <title>Главная - StopWar</title>
+</head>
+<body>
+    <div class="main-wrapper">
+
+        <header class="header">
+            <div class="header-wrapper">
+
+                <div class="header-logo">
+                    <a href="index.html" title="">
+                        <i class="fa-regular fa-triangle-exclamation"></i>
+                        StopWar
+                    </a>
+                </div><!-- header-logo -->
+
+                <nav class="header-nav">
+                    <ul class="header-list">
+                        <li class="header-item"><a href="index.html" title="">Главная</a></li>
+                        <li class="header-item"><a href="about.html" title="">О сайте</a></li>  
+                        <li class="header-item has-submenu"><a href="pages.html" title="">Страницы</a>
+                            <ul class="sub-list">
+                                <li class="sub-item"><a href="" title="">Страница 1</a></li>    
+                                <li class="sub-item"><a href="" title="">Страница 2</a></li>
+                                <li class="sub-item"><a href="" title="">Страница 3</a></li>
+                            </ul>
+                        </li>
+                        <li class="header-item has-submenu"><a href="cats.html" title="">Рурбики</a>
+                            <ul class="sub-list">
+                                <li class="sub-item"><a href="" title="">Рубрика 1</a></li>
+                                <li class="sub-item"><a href="" title="">Рубрика 2</a></li>
+                                <li class="sub-item"><a href="" title="">Рубрика 3</a></li>
+                                <li class="sub-item"><a href="" title="">Рубрика 4</a></li>
+                                <li class="sub-item"><a href="" title="">Рубрика 5</a></li>
+                            </ul>
+                        </li>
+                        <li class="header-item"><a href="heroes.html" title="">Герои</a></li>
+                        <li class="header-item"><a href="fascists.html" title="">Фашисты</a></li>
+                    </ul>
+                </nav><!-- header-nav -->
+
+                <div class="header-butthon">
+                    <button title=""><i class="fa-regular fa-magnifying-glass"></i></button>
+                    <button title=""><i class="fa-regular fa-circle-exclamation"></i></button>
+                </div><!-- header-butthon -->
+
+            </div>
+
+        </header><!-- header -->
+
+        <main class="content-main">
+            <div class="search-results">
+                <div class="search-empty">
+                    <div class="search-empty__icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                        </svg>
+                    </div>
+                    
+                    <h1 class="search-empty__title">По вашему запросу ничего не найдено</h1>
+                    <p class="search-empty__text">К сожалению, мы не смогли найти результаты по вашему поисковому запросу. Попробуйте изменить запрос или воспользуйтесь нашими подсказками.</p>
+    
+                    <form class="search-form" action="/search" method="GET">
+                        <input type="search" 
+                               class="search-input" 
+                               name="q" 
+                               placeholder="Попробуйте поискать снова..."
+                               aria-label="Поиск">
+                        <button type="submit" class="search-button">
+                            <svg width="24" height="24" viewBox="0 0 24 24">
+                                <path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.57 4.23l.27.28h.79l5 5-1.5 1.5-5-5v-.79l-.28-.27C12.59 15.41 11.11 16 9.5 16A6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/>
+                            </svg>
+                        </button>
+                    </form>
+    
+                    <div class="search-suggestions">
+                        <h2 class="search-suggestions__title">Попробуйте:</h2>
+                        <ul class="search-suggestions__list">
+                            <li class="search-suggestions__item">• Проверить правильность написания слов</li>
+                            <li class="search-suggestions__item">• Использовать более общие слова</li>
+                            <li class="search-suggestions__item">• Уменьшить количество слов в запросе</li>
+                            <li class="search-suggestions__item">• Перейти в <a href="/category.html">каталог</a> для просмотра всех материалов</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <div class="footer-wrapper">
+                <p>Copyright &copy; 2022 &ndash; 2025 StopWar. Сайт создан в просветительских целях, а также для сохранения всех или большей части совершённых военных преступлений россией и ее вооружённые силы против Украины и украинского общества.
+                    Не забывайте, что совершила россия не забывайте агрессора нельзя задобрить или усмирить агрессор, боится только силы агрессора можно только ПОБЕДИТЬ</p>
+            </div>
+            <nav class="footer-nav">
+                 <ul class="footer-list">
+                    <li class="footer-item"><a href="index.html" title="">Главная</a></li>
+                    <li class="footer-item"><a href="about.html" title="">о сайте</a></li>
+                    <li class="footer-item"><a href="" title="">Страницы</a></li>
+                    <li class="footer-item"><a href="" title="">Рубрики</a>
+                        <ul class="footer-sublist">
+                            <li class="footer-subitem"><a href="" title="">Рубрика 1</a></li>
+                            <li class="footer-subitem"><a href="" title="">Рубрика 2</a></li>
+                            <li class="footer-subitem"><a href="" title="">Рубрика 3</a></li>
+                            <li class="footer-subitem"><a href="" title="">Рубрика 4</a></li>
+                            <li class="footer-subitem"><a href="" title="">Рубрика 5</a></li>
+                        </ul>
+                    </li>
+                    <li class="footer-item"><a href="" title="">Герои</a></li>
+                    <li class="footer-item"><a href="" title="">Фашисты</a></li>
+                 </ul>
+
+            </nav>
+        </footer><!-- footer -->
+
+    </div><!-- main-wrapper -->
+    <script src="scripts/jQuery-v3.js"></script>
+    <script src="slick/slick.min.js"></script>
+    <script src="scripts/main.js"></script>
+</body>
+</html>
