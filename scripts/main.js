@@ -510,4 +510,72 @@ jQuery.noConflict();
         });
     });
 
+    function initCommentExpansion() {
+        const comments = document.querySelectorAll('.comment');
+        
+        comments.forEach(comment => {
+            const commentBody = comment.querySelector('.comment-body');
+            const content = commentBody.querySelector('p');
+            if (!content) return;
+
+            // Проверяем необходимость добавления кнопки
+            const checkNeedsExpansion = () => {
+                const words = content.textContent.trim().split(/\s+/);
+                return words.length > 60 || commentBody.scrollHeight > 80;
+            };
+
+            if (checkNeedsExpansion()) {
+                commentBody.classList.add('needs-expansion');
+                
+                // Создаем кнопку
+                const readMoreBtn = document.createElement('button');
+                readMoreBtn.className = 'read-more-btn';
+                readMoreBtn.textContent = 'читать полностью';
+                
+                // Добавляем кнопку после comment-body
+                commentBody.after(readMoreBtn);
+                
+                // Обработчик клика
+                readMoreBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    commentBody.classList.toggle('expanded');
+                    readMoreBtn.textContent = commentBody.classList.contains('expanded') 
+                        ? 'свернуть' 
+                        : 'читать полностью';
+                });
+            }
+        });
+    }
+
+    // Добавляем обработчик изменения размера окна для пересчета необходимости кнопки
+    window.addEventListener('resize', debounce(() => {
+        const comments = document.querySelectorAll('.comment-body');
+        comments.forEach(commentBody => {
+            if (commentBody.scrollHeight <= 80) {
+                commentBody.classList.remove('needs-expansion', 'expanded');
+            } else if (!commentBody.classList.contains('needs-expansion')) {
+                commentBody.classList.add('needs-expansion');
+            }
+        });
+    }, 250));
+
+    // Функция debounce для оптимизации производительности
+    function debounce(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+            const later = () => {
+                clearTimeout(timeout);
+                func(...args);
+            };
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+        };
+    }
+
+    // Добавьте вызов функции в обработчик DOMContentLoaded
+    document.addEventListener('DOMContentLoaded', function() {
+        // ... существующий код ...
+        initCommentExpansion();
+    });
+
 })(jQuery);
