@@ -177,6 +177,25 @@
                 </div>
 
                 <div class="comments-item">
+                    <div class="comments-info">
+                        <div class="comments-stats">
+                            <div class="comments-stats-item">
+                                Всего комментариев: <strong>0</strong>
+                            </div>
+                            <div class="comments-stats-item bot">
+                                Боты: <span>0</span>
+                            </div>
+                            <div class="comments-stats-item fake">
+                                Фейки: <span>0</span>
+                            </div>
+                        </div>
+                        <div class="comments-filter">
+                            <select id="commentsSort">
+                                <option value="newest">Сначала новые</option>
+                                <option value="oldest">Сначала старые</option>
+                            </select>
+                        </div>
+                    </div>
                     <ul class="comments-list">
                         <!-- Комментарий 1 с 3 ответами -->
                         <li class="comments-item">
@@ -250,7 +269,7 @@
                         <!-- Комментарий 3 -->
                         <li class="comments-item">
                             <div class="comment">
-                                <div class="comment-icon">Е</div>
+                                <div class="comment-icon">ЕЛ</div>
                                 <div class="comment-meta">
                                     <span><i class="fa-regular fa-user"></i>Елена</span>
                                     <span><i class="fa-regular fa-calendar"></i>25.09.2024</span>
@@ -262,6 +281,40 @@
                                 <div class="comment-actions">
                                     <button class="reply-btn">Ответить</button>
                                 </div>
+
+                                <ul class="comment-replies">
+                                    
+                                    <li class="comment reply">
+                                        <div class="comment-icon admin">A</div>
+                                        <div class="comment-meta">
+                                            <span><i class="fa-regular fa-user"></i>Администратор</span>
+                                            <span class="user-badge admin">Администратор</span>
+                                            <span><i class="fa-regular fa-calendar"></i>25.09.2024</span>
+                                            <span><i class="fa-regular fa-clock"></i>13:15</span>
+                                        </div>
+                                        <div class="comment-body">
+                                            <p>Спасибо за ваш отзыв! Мы стараемся предоставлять максимально объективную информацию.</p>
+                                        </div>
+                                        <div class="comment-actions">
+                                            <button class="reply-btn">Ответить</button>
+                                        </div>
+                                    </li>
+
+                                    <li class="comment reply">
+                                        <div class="comment-icon">В</div>
+                                        <div class="comment-meta">
+                                            <span><i class="fa-regular fa-user"></i>Виктор</span>
+                                            <span><i class="fa-regular fa-calendar"></i>25.09.2024</span>
+                                            <span><i class="fa-regular fa-clock"></i>14:20</span>
+                                        </div>
+                                        <div class="comment-body">
+                                            <p>Полностью согласен с Михаилом!</p>
+                                        </div>
+                                        <div class="comment-actions">
+                                            <button class="reply-btn">Ответить</button>
+                                        </div>
+                                    </li>
+                                
                             </div>
                         </li>
 
@@ -282,8 +335,6 @@
                                 </div>
                             </div>
                         </li>
-
-                        
 
                         <!-- Комментарий 4 с 5 ответами -->
                         <li class="comments-item">
@@ -501,7 +552,7 @@
                         <!-- Комментарий 10 -->
                         <li class="comments-item">
                             <div class="comment">
-                                <div class="comment-icon">П</div>
+                                <div class="comment-icon">ПG</div>
                                 <div class="comment-meta">
                                     <span><i class="fa-regular fa-user"></i>Павел</span>
                                     <span><i class="fa-regular fa-calendar"></i>25.09.2024</span>
@@ -512,7 +563,103 @@
                                 </div>
                                 <div class="comment-actions">
                                     <button class="reply-btn">Ответить</button>
+                                    <button class="toggle-replies-btn" data-replies-count="3">
+                                        <span class="show-replies">Показать ответы </span>
+                                        <span class="hide-replies">Скрыть ответы</span>
+                                        <i class="fa-regular fa-chevron-down"></i>
+                                    </button>
                                 </div>
+                            
+                                <ul class="comment-replies">
+                                    <li class="comment reply">
+                                        <div class="comment-icon mod">M</div>
+                                        <div class="comment-meta">
+                                            <span><i class="fa-regular fa-user"></i>Модератор Анна</span>
+                                            <span class="user-badge moderator">Модератор</span>
+                                            <span><i class="fa-regular fa-calendar"></i>25.09.2024</span>
+                                            <span><i class="fa-regular fa-clock"></i>16:45</span>
+                                        </div>
+                                        <div class="comment-body">
+                                            <p>Спасибо за внимательность! Мы проверим и исправим.</p>
+                                        </div>
+                                        <div class="comment-actions">
+                                            <button class="reply-btn">Ответить</button>
+                                        </div>
+                                    </li>
+
+                                    <li class="comment reply">
+                                        <div class="comment-icon mod">A</div>
+                                        <div class="comment-meta">
+                                            <span><i class="fa-regular fa-user"></i>Артур</span>
+                                            <span class="user-badge admin">Администратор</span>
+                                            <span><i class="fa-regular fa-calendar"></i>25.09.2024</span>
+                                            <span><i class="fa-regular fa-clock"></i>16:45</span>
+                                        </div>
+                                        <div class="comment-body">
+                                            <p>Спасибо за внимательность! Мы проверим и исправим.</p>
+                                        </div>
+                                        <div class="comment-actions">
+                                            <button class="reply-btn">Ответить</button>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+
+                        <!-- Тестовый комментарий 1 (более 60 слов) -->
+                        <li class="comments-item">
+                            <div class="comment">
+                                <div class="comment-icon">МУ</div>
+                                <div class="comment-meta">
+                                    <span><i class="fa-regular fa-user"></i>Мой Ужасный</span>
+                                    <span><i class="fa-regular fa-calendar"></i>26.09.2024</span>
+                                    <span><i class="fa-regular fa-clock"></i>14:30</span>
+                                </div>
+                                <div class="comment-body">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+                                </div>
+                                <div class="comment-actions">
+                                    <button class="reply-btn">Ответить</button>
+                                    <button class="toggle-replies-btn" data-replies-count="3">
+                                        <span class="show-replies">Показать ответы </span>
+                                        <span class="hide-replies">Скрыть ответы</span>
+                                        <i class="fa-regular fa-chevron-down"></i>
+                                    </button>
+                                </div>
+
+                                <ul class="comment-replies">
+                                    <li class="comment reply">
+                                        <div class="comment-icon mod">M</div>
+                                        <div class="comment-meta">
+                                            <span><i class="fa-regular fa-user"></i>Модератор Анна</span>
+                                            <span class="user-badge moderator">Модератор</span>
+                                            <span><i class="fa-regular fa-calendar"></i>25.09.2024</span>
+                                            <span><i class="fa-regular fa-clock"></i>16:45</span>
+                                        </div>
+                                        <div class="comment-body">
+                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci praesentium expedita repellendus tempora tenetur eos odio dicta obcaecati fuga ipsa officia veniam consequatur deleniti, harum placeat quo ex modi mollitia! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloribus, ullam harum eaque iusto impedit, minima ratione alias facere sed a odit nisi doloremque necessitatibus magnam maiores fugit! Voluptatibus, ea magnam.</p>
+                                        </div>
+                                        <div class="comment-actions">
+                                            <button class="reply-btn">Ответить</button>
+                                        </div>
+                                    </li>
+
+                                    <li class="comment reply">
+                                        <div class="comment-icon mod">A</div>
+                                        <div class="comment-meta">
+                                            <span><i class="fa-regular fa-user"></i>Артур</span>
+                                            <span class="user-badge admin">Администратор</span>
+                                            <span><i class="fa-regular fa-calendar"></i>25.09.2024</span>
+                                            <span><i class="fa-regular fa-clock"></i>16:45</span>
+                                        </div>
+                                        <div class="comment-body">
+                                            <p>Спасибо за внимательность! Мы проверим и исправим.</p>
+                                        </div>
+                                        <div class="comment-actions">
+                                            <button class="reply-btn">Ответить</button>
+                                        </div>
+                                    </li>
+                                </ul>
                             </div>
                         </li>
 
@@ -527,35 +674,53 @@
                                 </div>
                                 <div class="comment-body">
                                     <p>Слово1
-Слово2
-Слово3
-Слово4
-Слово5
-Слово6
-Слово7
-Слово8
-Слово9
-Слово10
-Слово11
-Слово12
-Слово13
-Слово14
-Слово15
-Слово16
-Слово17
-Слово18
-Слово19
-Слово20
-Слово21
-Слово22
-Слово23
-Слово24
-Слово25
-Слово26
-Слово27
-Слово28
-Слово29
-Слово30</p>
+                                        Слово2
+                                        Слово3
+                                        Слово4
+                                        Слово5
+                                        Слово6
+                                        Слово7
+                                        Слово8
+                                        Слово9
+                                        Слово10
+                                        Слово11
+                                        Слово12
+                                        Слово13
+                                        Слово14
+                                        Слово15
+                                        Слово16
+                                        Слово17
+                                        Слово18
+                                        Слово19
+                                        Слово20
+                                        Слово21
+                                        Слово22
+                                        Слово23
+                                        Слово24
+                                        Слово25
+                                        Слово26
+                                        Слово27
+                                        Слово28
+                                        Слово29
+                                        Слово30</p>
+                                </div>
+                                <div class="comment-actions">
+                                    <button class="reply-btn">Ответить</button>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- Тестовый комментарий 1 (более 60 слов) -->
+                        <li class="comments-item">
+                            <div class="comment">
+                                <div class="comment-icon">T</div>
+                                <div class="comment-meta">
+                                    <span><i class="fa-regular fa-user"></i>Тестовый Пользователь</span>
+                                    <span><i class="fa-regular fa-calendar"></i>26.09.2024</span>
+                                    <span><i class="fa-regular fa-clock"></i>14:30</span>
+                                </div>
+                                <div class="comment-body">
+                                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Inventore ea itaque aspernatur error quod! Totam sequi eligendi dolorum vitae, eos magnam voluptatem porro, corrupti, illum officiis fugiat nesciunt laborum omnis.Lorem ipsum dolor sit amet consectetur adipisicing elit. Est minus deserunt asperiores! Commodi, quisquam accusamus voluptate debitis nihil illum unde beatae, iure error, accusantium quasi ea! Et corrupti porro illo! Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
                                 </div>
                                 <div class="comment-actions">
                                     <button class="reply-btn">Ответить</button>
@@ -605,14 +770,38 @@
                 </div>
 
             </div>
+
+            <div class="comments-pagination">
+                <div class="pagination-info">
+                    Комментарии страница <span class="current-page">1</span> из <span class="total-pages">5</span>
+                </div>
+                <div class="pagination-controls">
+                    <button class="pagination-btn" data-page="prev" disabled>
+                        <i class="fa-regular fa-chevron-left"></i>
+                        Предыдущая
+                    </button>
+                    <div class="pagination-numbers">
+                        <button class="pagination-number active">1</button>
+                        <button class="pagination-number">2</button>
+                        <button class="pagination-number">3</button>
+                        <button class="pagination-number">4</button>
+                        <button class="pagination-number">5</button>
+                    </div>
+                    <button class="pagination-btn" data-page="next">
+                        Следующая
+                        <i class="fa-regular fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+
         </div>
 
         <div class="content-related">   
             <h4 class="section-title">Связанные статьи</h4>
             <div class="related-wrapper">
 
-                <article class="news-card">
-                    <div class="news-card-wrapper">
+                <article class="card-news">
+                    <div class="card-news-wrapper">
                         <div class="news-thumb">
                             <img src="images/news/n1.jpg" alt="News">
                             <a href="#" title="#">12.05.2024</a>
@@ -624,8 +813,8 @@
                     </div>
                 </article><!-- of tabs-card -->
 
-                <article class="news-card">
-                    <div class="news-card-wrapper">
+                <article class="card-news">
+                    <div class="card-news-wrapper">
                         <div class="news-thumb">
                             <img src="images/news/n2.jpg" alt="News">
                             <a href="#" title="#">12.05.2024</a>
@@ -637,23 +826,10 @@
                     </div>
                 </article><!-- of tabs-card -->
 
-                <article class="news-card">
-                    <div class="news-card-wrapper">
+                <article class="card-news">
+                    <div class="card-news-wrapper">
                         <div class="news-thumb">
                             <img src="images/news/n3.jpg" alt="News">
-                            <a href="#" title="#">12.05.2024</a>
-                        </div>
-                        <div class="news-content">
-                            <h5 class="news-title"><a href="#" title="#">Заголовок новости</a></h5>
-                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vero obcaecati et sunt sequi? Voluptatibus porro, harum nostrum illum dolorem quos nemo dignissimos, fuga a ea id distinctio natus, dolor officia?</p>
-                        </div>
-                    </div>
-                </article><!-- of tabs-card -->
-
-                <article class="news-card">
-                    <div class="news-card-wrapper">
-                        <div class="news-thumb">
-                            <img src="images/news/4.jpg" alt="News">
                             <a href="#" title="#">12.05.2024</a>
                         </div>
                         <div class="news-content">

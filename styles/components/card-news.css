@@ -26,7 +26,8 @@
     overflow: hidden;
 }
 .content-main .card-news .card-news-img a,
-.content-tabs .card-news .card-news-date{
+.content-tabs .card-news .card-news-date,
+.content-related .news-thumb a{
     position: absolute;
     top: var(--spacing-sm);
     left: var(--spacing-sm);
@@ -39,7 +40,8 @@
     transition: all var(--transition-base);
 }
 .content-main .card-news .card-news-img a::before,
-.content-tabs .card-news .card-news-date::before{
+.content-tabs .card-news .card-news-date::before,
+.content-related .card-news .news-thumb a::before{
     content: "\f073";
 	font-family: "Font Awesome 6 Pro";
     font-size: var(--font-small);
