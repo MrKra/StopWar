@@ -519,23 +519,32 @@
 }
 
 /* Comments Section Styles */
+/* Комментарии */
 .content-comments  .comments-list {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    align-content: flex-start;
+    gap: 1rem;
     padding: 0;
     list-style: none;
     margin: 2rem 0;
 }
 
-.content-comments .comments-item {
+.content-comments .comments-list .comments-item {
     background: var(--color-bg-secondary);
-    border-radius: var(--border-radius);
-    padding: 0;
+    padding: var(--spacing-sm);
+    border: 1px solid var(--border-light);
+    border-radius: calc(var(--radius-lg) + 5px);
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-base);
+    max-width: 660px;
 }
 
-.content-comments .comments-item:hover {
-    box-shadow: var(--box-shadow);
+.content-comments .comments-list .comments-item:hover {
+    box-shadow: var(--shadow-md);
 }
 
 .content-comments .comment {position: relative;}
@@ -564,14 +573,76 @@
 .content-comments .comment-icon.mod {
     background: var(--color-success);
 }
+.content-comments .marker-fake,
+.content-comments .marker-bot{
+    position: absolute;
+    top: 50px;
+    left: 0;
+    width: 40px;
+    height: 30px;
+    background: #ff4444;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    transform-origin: top center;
+    animation: swingSign 3s ease-in-out infinite;
+}
+.content-comments .marker-bot{
+    background: #4a90e2;
+    animation: swingSign 3s ease-in-out infinite;
+}
+
+/* Создаем "веревку" для таблички */
+.marker-fake::before,
+.marker-bot::before{
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 10px;
+    background: #666;
+}
+.marker-bot::before{
+    background: #2c5c8f;
+}
+
+/* Добавляем текст */
+.marker-fake::after,
+.marker-bot::after{
+    content: 'FAKE';
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+}
+.marker-bot::after{content: 'BOT';}
+
+/* Анимация покачивания */
+@keyframes swingSign {
+    0% { transform: rotate(-5deg); }
+    50% { transform: rotate(5deg); }
+    100% { transform: rotate(-5deg); }
+}
+/* Анимация покачивания для таблички бота */
+@keyframes swingBotSign {
+    0% { transform: rotate(-3deg); }
+    50% { transform: rotate(3deg); }
+    100% { transform: rotate(-3deg); }
+}
 
 .content-comments .comment-meta {
     margin-left: 55px;
-    margin-bottom: 1rem;
+    margin-bottom: 0.65rem;
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
     font-size: 0.9rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
 }
 
 .content-comments .comment-meta span {
@@ -614,16 +685,16 @@
 
 .content-comments .read-more-btn {
     position: absolute;
-    bottom: 15px;
+    bottom: 5px;
     right: 5px;
     padding: 4px 8px;
-    color: var(--primary-color);
+    color: var(--text-color);
     cursor: pointer;
     border: none;
     background: none;
     font-size: var(--font-small);
     font-weight: var(--weight-base);
-    text-decoration: none;
+    text-decoration: underline;
     display: none;
 }
 
@@ -632,13 +703,13 @@
 }
 
 .content-comments .read-more-btn:hover {
-    color: var(--secondary-color);
-    text-decoration: underline;
+    color: var(--primary-color);
+    text-decoration: none;
 }
 
 .content-comments .comment-body.expanded + .read-more-btn {
     position: absolute;
-    bottom: 15px;
+    bottom: 5px;
     right: 5px;
     display: block;
     font-size: var(--font-small);
@@ -712,6 +783,7 @@
 }
 
 /* Toggle Replies Button Styles */
+/* Обновляем стили для кнопки разворачивания ответов */
 .content-comments .toggle-replies-btn {
     background: none;
     border: none;
@@ -752,7 +824,7 @@
 /* Comment Actions Layout */
 .content-comments .comment-actions {
     margin-left: 55px;
-    margin-top: 1rem;
+    margin-top: 0.35rem;
     display: flex;
     gap: var(--spacing-md);
     align-items: center;
@@ -784,4 +856,3 @@
         transform: translateY(0);
     }
 }
-
