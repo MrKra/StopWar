@@ -636,4 +636,61 @@ jQuery.noConflict();
         });
     });
 
+    // Обновляем обработчик для разворачивания наград
+    document.querySelectorAll('.award-count').forEach(button => {
+        // Подсчитываем количество скрытых медалей при загрузке
+        const cardAwards = button.closest('.card-awards');
+        const hiddenAwards = cardAwards.querySelectorAll('.awards-expandable .award').length;
+        
+        // Обновляем счетчик только если есть скрытые награды
+        if (hiddenAwards > 0) {
+            button.querySelector('span').textContent = `+${hiddenAwards}`;
+            button.style.display = 'flex';
+        } else {
+            button.style.display = 'none';
+        }
+
+        button.addEventListener('click', function(e) {
+            e.stopPropagation();
+            
+            const cardAwards = this.closest('.card-awards');
+            const expandable = cardAwards.querySelector('.awards-expandable');
+            const isExpanded = expandable.classList.contains('expanded');
+            
+            // Закрываем все открытые блоки наград
+            document.querySelectorAll('.awards-expandable.expanded').forEach(el => {
+                el.classList.remove('expanded');
+                el.closest('.card-awards').querySelector('.award-count').classList.remove('active');
+            });
+            
+            if (!isExpanded) {
+                expandable.classList.add('expanded');
+                this.classList.add('active'); // Это скроет кнопку
+            }
+        });
+    });
+
+    // Обновляем обработчик для кнопки скрытия
+    document.querySelectorAll('.awards-collapse').forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const expandable = this.closest('.awards-expandable');
+            const cardAwards = expandable.closest('.card-awards');
+            const awardCount = cardAwards.querySelector('.award-count');
+            
+            expandable.classList.remove('expanded');
+            awardCount.classList.remove('active'); // Это покажет кнопку обратно
+        });
+    });
+
+    // Добавляем обработчик для закрытия при клике вне блока
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('.card-awards')) {
+            document.querySelectorAll('.awards-expandable.expanded').forEach(el => {
+                el.classList.remove('expanded');
+                el.closest('.card-awards').querySelector('.award-count').classList.remove('active');
+            });
+        }
+    });
+
 })(jQuery);
