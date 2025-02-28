@@ -2,8 +2,8 @@
 
      /* Основные цвета сайта */
     --primary-color: #ff4d00; 
-    /*--accent-color: #ff7940;*/
-    --accent-color: #2196F3;
+    --accent-color: #ff7940;
+    --admin-color: #2196F3;
     --accent-color-dark: #1976D2;
     --danger-color: #ff3f04;
     --success-color: #04a704;
@@ -68,17 +68,17 @@
      --link-hover: var(--primary-color); 
      
      /* Отступы */
-     --spacing-xs: 5px;
-     --spacing-sm: 10px;
-     --spacing-md: 20px;
-     --spacing-lg: 30px;
-     --spacing-xl: 40px;
-     --spacing-2xl: 50px;
+     --spacing-xs: 0.3125rem;   /* 5px */
+     --spacing-sm: 0.625rem;    /* 10px */
+     --spacing-md: 1.25rem;     /* 20px */
+     --spacing-lg: 1.875rem;    /* 30px */
+     --spacing-xl: 2.5rem;      /* 40px */
+     --spacing-2xl: 3.125rem;   /* 50px */
 
      /* Максимальная ширина контейнеров */
-    --container-sm: 640px;             
-    --container-md: 768px;             
-    --container-lg: 1024px;
-    --container-xl: 1360px;
-    --container-xxl: 1400px;
+    --container-sm: 40rem;      /* 640px */
+    --container-md: 48rem;      /* 768px */
+    --container-lg: 64rem;      /* 1024px */
+    --container-xl: 85rem;      /* 1360px */
+    --container-xxl: 87.5rem;   /* 1400px */
 }

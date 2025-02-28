@@ -1,0 +1,76 @@
+/* Style Pagination */
+.comments .pagination {
+    padding-top: var(--spacing-md);
+    padding-bottom: var(--spacing-sm);
+}
+.comments .pagination-info {
+    text-align: center;
+    color: var(--text-light);
+    font-size: var(--font-small);
+    margin-bottom: var(--spacing-md);
+}
+.comments .pagination-info .current-page,
+.comments .pagination-info .total-pages {
+    font-weight: var(--weight-medium);
+    color: var(--text-primary);
+}
+.comments .pagination-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-md);
+}
+.comments .pagination-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-full);
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-size: var(--font-small);
+    cursor: pointer;
+    transition: all var(--transition-base);
+}
+.comments .pagination-btn:hover:not(:disabled) {
+    background: var(--primary-color);
+    color: var(--text-white);
+    border-color: var(--primary-color);
+    transform: translateY(-1px);
+}
+.comments .pagination-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background: var(--bg-secondary);
+}
+.comments .pagination-numbers {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+}
+.comments .pagination-number {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-full);
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-size: var(--font-small);
+    cursor: pointer;
+    transition: all var(--transition-base);
+}
+.comments .pagination-number:hover:not(.active) {
+    background: var(--bg-secondary);
+    border-color: var(--border-color);
+    transform: translateY(-1px);
+}
+.comments .pagination-number.active {
+    background: var(--primary-color);
+    color: var(--text-white);
+    border-color: var(--primary-color);
+    cursor: default;
+}

@@ -1,0 +1,194 @@
+.comments .form-comments {
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--spacing-sm) + var(--spacing-xs));
+}
+.comments .form-comments .form-comments__item {
+    position: relative;
+    isolation: isolate;
+}
+.comments .form-comments .form-comments_wrapper{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+.comments .form-comments .form-comments_wrapper .form-comments__item{
+    width: 45%;
+    max-width: 45%;
+}
+.comments .form-comments .form-comments__input,
+.comments .form-comments .form-comments__textarea {
+    width: 100%;
+    max-width: 100%; /* добавляем ограничение максимальной ширины */
+    padding: var(--spacing-md);
+    background: var(--bg-secondary);
+    border: 2px solid transparent;
+    border-radius: var(--radius-md);
+    font-size: var(--font-base);
+    color: var(--text-color);
+    transition: all var(--transition-base);
+    margin-bottom: 0;
+    box-sizing: border-box; /* добавляем box-sizing для корректного расчета ширины */
+}
+.comments .form-comments .form-comments__textarea {
+    min-height: 120px;
+    resize: vertical;
+    max-width: 100%;
+}
+.comments .form-comments .form-comments__input::placeholder,
+.comments .form-comments .form-comments__textarea::placeholder {
+    color: transparent;
+}
+.comments .form-comments .form-comments__input:focus,
+.comments .form-comments .form-comments__textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    background-color: var(--bg-primary);
+}
+.comments .form-comments .form-comments__label {
+    position: absolute;
+    left: var(--spacing-md);
+    top: 50%;
+    transform: translateY(-50%);
+    padding-inline: 5px;
+    color: var(--color-gray);
+    background-color: var(--color-white);
+    font-size: var(--font-base);
+    pointer-events: none;
+    transition: all var(--transition-fast);
+    will-change: transform, font-size, top;
+}
+/* Для textarea label располагаем вверху */
+.comments .form-comments .form-comments__textarea + .form-comments__label {top: var(--spacing-md);}
+/* Стили для активного состояния */
+.comments .form-comments .form-comments__input:focus + .form-comments__label,
+.comments .form-comments .form-comments__textarea:focus + .form-comments__label,
+.comments .form-comments .form-comments__input:not(:placeholder-shown) + .form-comments__label,
+.comments .form-comments .form-comments__textarea:not(:placeholder-shown) + .form-comments__label {
+    top: 0;
+    transform: translateY(-50%) scale(1);
+    color: var(--primary-color);
+    background: var(--bg-primary);
+}
+.comments .form-comments .form-comments_wrapper .button{
+    background: var(--bg-secondary);
+    color: var(--text-white);
+    padding: var(--spacing-sm) var(--spacing-xl);
+    border: none;
+    border-radius: var(--radius-full);
+    font-size: var(--font-base);
+    font-weight: var(--weight-medium);
+    cursor: pointer;
+    transition: all var(--transition-base);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+}
+.comments .form-comments .form-comments_wrapper .form-comments__button-send{background: var(--primary-color);}
+.comments .form-comments .form-comments_wrapper .form-comments__button-clear{background: var(--secondary-color);}
+.comments .form-comments .form-comments_wrapper .form-comments__button-send::after,
+.comments .form-comments .form-comments_wrapper .form-comments__button-clear::after{
+    content: "\f1d8";
+    font-family: "Font Awesome 6 Pro";
+    font-size: var(--font-base);
+}
+.comments .form-comments .form-comments_wrapper .form-comments__button-send::after{content: "\f1d8";}
+.comments .form-comments .form-comments_wrapper .form-comments__button-clear::after{content: "\e5d1";}
+.comments .form-comments .form-comments_wrapper .form-comments__button-send:hover,
+.comments .form-comments .form-comments_wrapper .form-comments__button-clear:hover{
+    background: var(--secondary-color);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+}
+.comments .form-comments .form-comments_wrapper .form-comments__button-send:hover{background: var(--secondary-color);}
+.comments .form-comments .form-comments_wrapper .form-comments__button-clear:hover{background: var(--secondary-light);}
+
+/* Отключаем автозаполнение стилей браузера */
+.comments .form-comments .form-comments__input:-webkit-autofill,
+.comments .form-comments .form-comments__textarea:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 30px var(--color-white) inset;
+    -webkit-text-fill-color: inherit;
+}
+
+/* Style Add Replyes form */
+.block-comments .reply-form,
+.block-comments .comment-replies .reply-form {
+    margin: 1rem auto;
+    padding: 1rem;
+    background: var(--bg-secondary);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-light);
+    box-sizing: border-box;
+    /*display: none;
+    opacity: 0;*/
+    transition: opacity 0.3s ease-in-out;
+}
+.block-comments .comment-replies .reply-form{margin-left: 10px;}
+.block-comments .reply-form.active {display: block;}
+.block-comments .reply-form__wrapper {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+.block-comments .reply-form__item {
+    flex: 1;
+    position: relative;
+}
+.block-comments .reply-form__input,
+.block-comments .reply-form__textarea {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-sm);
+    font-size: var(--font-small);
+    background: var(--bg-primary);
+    box-sizing: border-box;
+}
+.block-comments .reply-form__textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+.block-comments .reply-form__label {
+    position: absolute;
+    left: 0.5rem;
+    top: 0.5rem;
+    font-size: var(--font-small);
+    color: var(--text-light);
+    transition: all 0.2s ease-in-out;
+    pointer-events: none;
+}
+.block-comments .reply-form__input:focus + .reply-form__label,
+.block-comments .reply-form__textarea:focus + .reply-form__label,
+.block-comments .reply-form__input:not(:placeholder-shown) + .reply-form__label,
+.block-comments .reply-form__textarea:not(:placeholder-shown) + .reply-form__label {
+    transform: translateY(-1.4rem);
+    font-size: 0.75rem;
+    color: var(--primary-color);
+}
+.block-comments .reply-form__buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+}
+.block-comments .reply-form__button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font-size: var(--font-small);
+    transition: all var(--transition-base);
+}
+.block-comments .reply-form__button-submit {
+    background: var(--primary-color);
+    color: white;
+}
+.block-comments .reply-form__button-cancel {
+    background: var(--bg-secondary);
+    color: var(--text-color);
+    border: 1px solid var(--border-light);
+}
+.block-comments .reply-form__button:hover {opacity: 0.9;}

@@ -7,8 +7,16 @@
 @import 'components/card-heroes.css';
 @import 'components/tabs-content.css';
 @import 'components/footer.css';
+@import 'components/breadcrumbs.css';
+@import 'components/category.css';
+@import 'components/accordion.css';
+@import 'components/comments.css';
+@import 'components/pagination.css';
+@import 'components/allCardNews.css';
+@import 'components/formComments.css';
+/*@import 'page-post.css';*/
+@import 'pageOnePost.css';
 @import 'searchResult.css';
-@import 'page-post.css';
 @import '404.css';
 
 
@@ -35,7 +43,7 @@ body {
 }
 .wrapper{
     background: var(--bg-primary);
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
 }
 .content-main{
     margin: var(--spacing-md) 0;

@@ -1,0 +1,43 @@
+/* Style Category & Tags */
+.content-main .category,
+.content-main .tags{
+    margin: 0 auto;
+    margin-bottom: var(--spacing-sm);
+    padding: 0 var(--spacing-lg);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: calc(var(--spacing-md) + 5px);
+}
+.content-main .tags{
+    margin-top: var(--spacing-md);
+    padding: 0;
+}
+.content-main .category a,
+.content-main .tags a{
+    padding: var(--spacing-sm) calc(var(--spacing-sm) + 5px);
+    font-size: var(--font-small);
+    border-radius: var(--radius-full);
+    font-weight: var(--weight-base);
+    color: var(--text-color);
+    text-transform: none;
+    background: var(--bg-primary);
+    transition: all var(--transition-base);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+    border: 1px solid var(--border-light);
+}
+.content-main .category a:hover,
+.content-main .tags a:hover{
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+    color: var(--text-color);
+    border: 1px solid var(--border-light);
+}
+.content-main .category a::before,
+.content-main .tags a::before{
+    font-size: var(--font-small);
+	font-family: "Font Awesome 6 Pro";
+	margin-right: var(--spacing-xs);
+}
+.content-main .category a::before{content: "\f5fd";}
+.content-main .tags a::before{content: "\f02c";}

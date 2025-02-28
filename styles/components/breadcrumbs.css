@@ -1,0 +1,60 @@
+/* Breadcrumbs Styles */
+.breadcrumbs{
+    margin: var(--spacing-md) 0;
+    margin-bottom: 0;
+    padding: 0 var(--spacing-lg);
+}
+.breadcrumbs .breadcrumb {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: 0;
+    list-style: none;
+    max-width: var(--container-xl);
+    margin: 0 auto;
+}
+.breadcrumbs .breadcrumb-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    color: var(--text-light);
+    font-size: var(--font-base);
+}
+.breadcrumbs .breadcrumb-item:not(:last-child)::after {
+    content: "";
+    width: 6px;
+    height: 6px;
+    margin-left: var(--spacing-sm);
+    border-top: 2px solid var(--text-light);
+    border-right: 2px solid var(--text-light);
+    transform: rotate(45deg);
+    opacity: 0.5;
+}
+.breadcrumbs .breadcrumb-item a {
+    font-size: var(--font-base);
+    color: var(--text-light);
+    text-decoration: none;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    transition: all var(--transition-slow);
+    background: transparent;
+}
+.breadcrumbs .breadcrumb-item a:hover {
+    font-size: var(--font-base);
+    color: var(--primary-color);
+    transform: translateY(-1px);
+}
+.breadcrumbs .breadcrumb-item.active {
+    font-size: var(--font-base);
+    color: var(--primary-color);
+}
+.breadcrumbs .breadcrumb-item.active a {
+    font-size: var(--font-base);
+    color: var(--primary-color);
+    pointer-events: none;
+    padding: 0;
+}
+.breadcrumbs .breadcrumb-item.active::after {display: none;}
+.breadcrumbs .breadcrumb-item {animation: slideIn 0.3s ease-out forwards;}
+.breadcrumbs .breadcrumb-item:nth-child(2) {animation-delay: 0.1s;}
+.breadcrumbs .breadcrumb-item:nth-child(3) {animation-delay: 0.2s;}
