@@ -295,6 +295,7 @@ jQuery.noConflict();
         initLazyLoading();
         initShareButtons();
         initReadingTime();
+        initHeaderSearch();
     });
 
     /**
@@ -392,6 +393,95 @@ jQuery.noConflict();
         const words = content.textContent.trim().split(/\s+/).length;
         const readingTime = Math.ceil(words / 150);
         readingTimeElement.textContent = `${readingTime} мин.`;
+    }
+
+    /**
+     * Инициализация поиска и информационной панели в шапке
+     * Header search and info panel initialization
+     */
+    function initHeaderSearch() {
+        const searchBtn = document.querySelector('.header-butthon_search');
+        const infoBtn = document.querySelector('.header-butthon_info');
+        const searchForm = document.querySelector('.header-search');
+        const infoPanel = document.querySelector('.header-info');
+        const closeInfoBtn = document.querySelector('.info-close');
+        const searchInput = searchForm?.querySelector('input[type="search"]');
+        
+        if (!searchBtn || !searchForm || !searchInput || !infoBtn || !infoPanel || !closeInfoBtn) return;
+
+        // Открытие/закрытие информационной панели
+        infoBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            
+            // Закрываем форму поиска если открыта
+            searchForm.classList.remove('active');
+            
+            // Открываем/закрываем инфо-панель
+            infoPanel.classList.toggle('active');
+            
+            // Добавляем/убираем класс для блокировки прокрутки
+            document.body.classList.toggle('info-panel-open');
+        });
+
+        // Закрытие инфо-панели по кнопке
+        closeInfoBtn.addEventListener('click', () => {
+            infoPanel.classList.remove('active');
+            document.body.classList.remove('info-panel-open');
+        });
+
+        // Открытие/закрытие формы поиска
+        searchBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            
+            // Закрываем инфо-панель если открыта
+            infoPanel.classList.remove('active');
+            document.body.classList.remove('info-panel-open');
+            
+            // Открываем/закрываем форму поиска
+            searchForm.classList.toggle('active');
+            if (searchForm.classList.contains('active')) {
+                searchInput.focus();
+            }
+        });
+
+        // Закрытие по клику вне элементов
+        document.addEventListener('click', (e) => {
+            if (!searchForm.contains(e.target) && !searchBtn.contains(e.target)) {
+                searchForm.classList.remove('active');
+            }
+            if (!infoPanel.contains(e.target) && !infoBtn.contains(e.target)) {
+                infoPanel.classList.remove('active');
+                document.body.classList.remove('info-panel-open');
+            }
+        });
+
+        // Закрытие по Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                if (searchForm.classList.contains('active')) {
+                    searchForm.classList.remove('active');
+                    searchBtn.focus();
+                }
+                if (infoPanel.classList.contains('active')) {
+                    infoPanel.classList.remove('active');
+                    document.body.classList.remove('info-panel-open');
+                    infoBtn.focus();
+                }
+            }
+        });
+
+        // Предотвращение закрытия при клике внутри
+        searchForm.addEventListener('click', (e) => e.stopPropagation());
+        infoPanel.addEventListener('click', (e) => e.stopPropagation());
+
+        // Добавляем стили для блокировки прокрутки
+        const style = document.createElement('style');
+        style.textContent = `
+            body.info-panel-open {
+                overflow: hidden;
+            }
+        `;
+        document.head.appendChild(style);
     }
 
 })(jQuery);

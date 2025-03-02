@@ -51,9 +51,57 @@
                 </nav><!-- header-nav -->
 
                 <div class="header-butthon">
-                    <button title=""><i class="fa-regular fa-magnifying-glass"></i></button>
-                    <button title=""><i class="fa-regular fa-circle-exclamation"></i></button>
+                    <button class="header-butthon_search"  title=""><i class="fa-regular fa-magnifying-glass"></i></button>
+                    <button class="header-butthon_info" title=""><i class="fa-regular fa-circle-exclamation"></i></button>
                 </div><!-- header-butthon -->
+
+                <div class="header-search">
+                    <form action="search.html" method="get">
+                        <input type="search" name="q" placeholder="Поиск по сайту..." required>
+                        <button type="submit">
+                            <i class="fa-regular fa-magnifying-glass"></i>
+                            Найти
+                        </button>
+                    </form>
+                </div><!-- header-search -->
+
+                <div class="header-info">
+                    <div class="info-content">
+                        <h3>О проекте StopWar</h3>
+                        <p>Этот сайт создан с целью документирования и освещения военных преступлений России против Украины и украинского народа. Мы стремимся сохранить историческую память о происходящих событиях и предоставить достоверную информацию мировому сообществу.</p>
+                        
+                        <h4>Наши задачи:</h4>
+                        <ul>
+                            <li>Документирование военных преступлений</li>
+                            <li>Информирование общественности</li>
+                            <li>Сохранение исторической памяти</li>
+                            <li>Поддержка пострадавших</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-footer">
+                        <h4>Поддержать проект</h4>
+                        <div class="donation-methods">
+                            <a href="#" class="donate-button paypal">
+                                <i class="fa-brands fa-paypal"></i>
+                                PayPal
+                            </a>
+                            <a href="#" class="donate-button patreon">
+                                <i class="fa-brands fa-patreon"></i>
+                                Patreon
+                            </a>
+                            <a href="#" class="donate-button bitcoin">
+                                <i class="fa-brands fa-bitcoin"></i>
+                                Bitcoin
+                            </a>
+                        </div>
+                        <p class="support-text">Ваша поддержка помогает нам продолжать работу по документированию и освещению событий.</p>
+                    </div>
+
+                    <button class="info-close">
+                        <i class="fa-regular fa-xmark"></i>
+                    </button>
+                </div><!-- header-info -->
 
             </div>
 

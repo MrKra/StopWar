@@ -182,10 +182,6 @@
 }
 .content-main .card-footer a:hover {color: var(--text-color);}
 
-
-
-
-
 /* Обновляем стили для блока наград */
 .content-main .card-awards {
     display: flex;
