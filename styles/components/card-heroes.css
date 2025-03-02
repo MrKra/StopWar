@@ -137,127 +137,93 @@
 }
 
 /* Card Heroes */
-.card-heroes {
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    margin: 16px;
-    position: relative;
-    overflow: visible;
-}
-.card-heroes:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
-.card-img img {
-    width: 100%;
-    height: auto;
-    display: block;
-}
-.hcard-content {padding: 16px;}
-.card-name {
-    font-family: 'Roboto', sans-serif;
-    font-weight: 700;
-    font-size: 1.5em;
-    margin: 0 0 8px;
-    color: #333;
-}
-.card-rank {
-    font-family: 'Roboto', sans-serif;
-    font-weight: 500;
-    font-size: 1.2em;
-    margin: 0 0 12px;
+.content-main .card-rank{
+    margin: 0;
+    font-size: var(--font-small);
+    font-weight: var(--weight-base);
+    text-transform: uppercase;
     color: var(--primary-color);
+    cursor: default;
 }
-.card-tags {margin-bottom: var(--spacing-sm);}
-.card-tags span {
-    display: inline-block;
-    background-color: #f0f0f0;
-    border-radius: 4px;
-    padding: 4px 8px;
-    margin-right: 4px;
-    font-size: 0.9em;
+.content-main .card-tags {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: var(--spacing-sm);
+}
+.content-main .card-tags span {
+    background: var(--bg-secondary);
+    border-radius: var(--radius-sm);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: var(--font-small);
     color: var(--text-light);
+    cursor: default;
 }
-.card-description p {
-    font-family: 'Roboto', sans-serif;
-    font-weight: 300;
-    font-size: 1em;
-    color: #666;
-    line-height: 1.6;
+.content-main .card-description {margin: 0;}
+.content-main .card-description p {
+    font-weight: var(--weight-base);
+    font-size: var(--font-base);
+    color: var(--text-color);
+    line-height: var(--line-height-base);
     margin: 0 0 16px;
 }
-.card-footer {
+.content-main .card-footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
     font-size: 0.9em;
     color: #999;
 }
-.card-footer a {
+.content-main .card-footer a {
     text-decoration: none;
     color: var(--primary-color);
     transition: color 0.3s ease;
 }
-.card-footer a:hover {color: var(--text-color);}
+.content-main .card-footer a:hover {color: var(--text-color);}
+
+
+
+
+
 /* Обновляем стили для блока наград */
-.card-awards {
+.content-main .card-awards {
     display: flex;
-    gap: 8px;
-    margin: 12px 0;
+    gap: var(--spacing-sm);
+    margin: 0;
     align-items: center;
     position: relative;
 }
 
 /* Стили для медалей */
-.award {
+.content-main .award {
     position: relative;
     width: 32px;
     height: 32px;
     border-radius: 50%;
-    background: linear-gradient(135deg, #f6f7f8 0%, #e9eef2 100%);
+    background: linear-gradient(135deg, #f6f7f8 0%, #e7e7e7 100%);
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-.award:hover {
+.content-main .award:hover {
     transform: translateY(-3px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-.award i {font-size: 18px;}
+.content-main .award i {font-size: 18px;}
 
 /* Цвета для разных наград */
-.hero-ukraine {
-    color: #FFD700; /* золотой */
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-.order-courage {
-    color: #C0C0C0; /* серебряный */
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-.order-bohdan {
-    color: #CD7F32; /* бронзовый */
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-.order-merit {
-    color: #4169E1; /* синий */
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-.order-danylo {
-    color: #9370DB; /* пурпурный */
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-.medal-defender {
-    color: #20B2AA; /* бирюзовый */
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
+.content-main .hero-ukraine {color: #FFD700;}
+.content-main .order-courage {color: #C0C0C0;}
+.content-main .order-bohdan {color: #CD7F32;}
+.content-main .order-merit {color: #4169E1;}
+.content-main .order-danylo {color: #9370DB;}
+.content-main .medal-defender {color: #20B2AA;}
 
 /* Обновляем стили для кнопки показа наград */
-.award-count {
+.content-main .award-count {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -275,14 +241,14 @@
     top: 0;
     z-index: 99;
 }
-.award-count.active {
+.content-main .award-count.active {
     opacity: 0;
     visibility: hidden;
     transform: scale(0.8);
 }
 
 /* Стили для разворачивающегося блока */
-.awards-expandable {
+.content-main .awards-expandable {
     display: flex;
     position: absolute;
     left: calc(96px + 16px); /* Ширина 3-х медалей (32px * 3) + отступы между ними (8px * 2) + доп. отступ */
@@ -297,14 +263,14 @@
     transform: translateX(-20px);
     transition: all 0.3s ease;
 }
-.awards-expandable.expanded {
+.content-main .awards-expandable.expanded {
     opacity: 1;
     visibility: visible;
     transform: translateX(0);
 }
 
 /* Стрелка для скрытия */
-.awards-collapse {
+.content-main .awards-collapse {
     position: absolute;
     right: -32px;
     top: 50%;
@@ -322,25 +288,25 @@
     visibility: hidden;
     transition: all 0.3s ease;
 }
-.awards-expandable.expanded .awards-collapse {
+.content-main .awards-expandable.expanded .awards-collapse {
     opacity: 1;
     visibility: visible;
 }
-.awards-collapse:hover {
+.content-main .awards-collapse:hover {
     background: #e0e0e0;
 }
-.awards-collapse i {
+.content-main .awards-collapse i {
     font-size: 14px;
     color: #666;
 }
 
 /* Обновляем стили для медалей в awards-expandable */
-.awards-expandable .award {
+.content-main .awards-expandable .award {
     position: relative;
     width: 32px;
     height: 32px;
     border-radius: 50%;
-    background: linear-gradient(135deg, #f6f7f8 0%, #e9eef2 100%);
+    background: linear-gradient(135deg, #f6f7f8 0%, #e7e7e7 100%);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -349,18 +315,18 @@
     transform: translateX(-10px);
     transition: all 0.3s ease;
 }
-.awards-expandable .award:hover {
+.content-main .awards-expandable .award:hover {
     transform: translateY(-3px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-.awards-expandable.expanded .award {
+.content-main .awards-expandable.expanded .award {
     opacity: 1;
     transform: translateX(0);
 }
-.awards-expandable.expanded .award:hover {transform: translateY(-3px);}
+.content-main .awards-expandable.expanded .award:hover {transform: translateY(-3px);}
 
 /* Общие стили для всплывающих подсказок всех медалей */
-.award::after {
+.content-main .award::after {
     content: attr(title);
     position: absolute;
     bottom: 120%;
@@ -379,48 +345,48 @@
     margin-bottom: 5px;
     z-index: 100;
 }
-.award:hover::after {
+.content-main .award:hover::after {
     opacity: 1;
     visibility: visible;
 }
 
 /* Позиционирование подсказок для первых трех видимых медалей */
-.card-awards > .award:first-child::after {
+.content-main .card-awards > .award:first-child::after {
     left: 0;
     transform: translateX(0);
 }
-.card-awards > .award:nth-child(2)::after {
+.content-main .card-awards > .award:nth-child(2)::after {
     left: 50%;
     transform: translateX(-50%);
 }
-.card-awards > .award:nth-child(3)::after {
+.content-main .card-awards > .award:nth-child(3)::after {
     left: 0;
     right: auto;
     transform: translateX(0);
 }
 
 /* Позиционирование подсказок для скрытых медалей */
-.awards-expandable .award::after {
+.content-main .awards-expandable .award::after {
     bottom: 120%;
     left: 50%;
     transform: translateX(-50%);
 }
-.awards-expandable .award:first-child::after {
+.content-main .awards-expandable .award:first-child::after {
     left: 0;
     transform: translateX(0);
 }
-.awards-expandable .award:last-child::after {
+.content-main .awards-expandable .award:last-child::after {
     left: auto;
     right: 0;
     transform: translateX(0);
 }
 
 /* Скрытые награды */
-.award.hidden {display: none;}
-.awards-expandable .award.hidden {display: flex;}
+.content-main .award.hidden {display: none;}
+.content-main .awards-expandable .award.hidden {display: flex;}
 
 /* Анимация появления */
-.awards-expandable.expanded {animation: expandAwards 0.3s ease-out;}
+.content-main .awards-expandable.expanded {animation: expandAwards 0.3s ease-out;}
 
 @keyframes expandAwards {
     from {
@@ -430,17 +396,5 @@
     to {
         opacity: 1;
         transform: scale(1);
-    }
-}
-
-/* Адаптивность для фильтров */
-@media (max-width: 768px) {
-    .filters {
-        justify-content: center;
-    }
-    
-    .filter-btn {
-        padding: var(--spacing-xs) var(--spacing-md);
-        font-size: var(--font-xs);
     }
 }

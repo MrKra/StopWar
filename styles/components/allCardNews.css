@@ -1,4 +1,6 @@
-.related-posts .card-news{
+.related-posts .card-news,
+.content-main .card-news,
+.content-main .card-heroes{
     position: relative;
     background: var(--bg-primary);
     border-radius: var(--radius-lg);
@@ -11,7 +13,8 @@
     width: 100%;
     min-width: 0;
 }
-.related-posts .card-wrapper{
+.related-posts .card-wrapper,
+.content-main .card-wrapper{
     position: relative;
     height: 100%;
     display: flex;
@@ -20,8 +23,12 @@
     backdrop-filter: blur(10px);
     width: 100%
 }
-.related-posts .card-news:hover {transform: translateY(-5px)}
-.related-posts .card-news::before {
+.related-posts .card-news:hover,
+.content-main .card-news:hover,
+.content-main .card-heroes:hover {transform: translateY(-5px)}
+.related-posts .card-news::before,
+.content-main .card-news::before,
+.content-main .card-heroes::before {
     content: '';
     position: absolute;
     top: 0;
@@ -33,13 +40,19 @@
     opacity: 0;
     transition: opacity var(--transition-slow);
 }
-.related-posts .card-news:hover::before {opacity: 0.1;}
-.related-posts .card-thumb {
+.related-posts .card-news:hover::before,
+.content-main .card-news:hover::before,
+.content-main .card-heroes:hover::before {opacity: 0.1;}
+.related-posts .card-thumb,
+.content-main .card-thumb,
+.content-main .card-img {
     position: relative;
     padding-top: 60%;
     overflow: hidden; 
 }
-.related-posts .card-thumb img {
+.related-posts .card-thumb img,
+.content-main .card-thumb img,
+.content-main .card-img img{
     position: absolute;
     top: 0;
     left: 0;
@@ -47,7 +60,8 @@
     height: 100%;
     object-fit: cover;
 }
-.related-posts .card-thumb a{
+.related-posts .card-thumb a,
+.content-main .card-thumb a{
     position: absolute;
     top: var(--spacing-sm);
     left: var(--spacing-sm);
@@ -59,7 +73,8 @@
     text-decoration: none;
     transition: all var(--transition-base);
 }
-.related-posts .card-thumb a::before{
+.related-posts .card-thumb a::before,
+.content-main .card-thumb a::before{
     content: "\f073";
     font-family: "Font Awesome 6 Pro";
     font-size: var(--font-small);
@@ -67,7 +82,8 @@
     display: inline-block;
     margin-right: var(--spacing-xs);
 }
-.related-posts .card-content {
+.related-posts .card-content,
+.content-main .card-content {
     padding: var(--spacing-lg);
     flex-grow: 1;
     display: flex;
@@ -76,13 +92,17 @@
     position: relative;
     z-index: 1;
 }
-.related-posts .card-title {
+.related-posts .card-title,
+.content-main .card-title,
+.content-main .card-name {
     margin: 0;
     font-size: var(--font-lg);
     line-height: 1.4;
     font-weight: var(--weight-bold);
 }
-.related-posts .card-title a {
+.related-posts .card-title a,
+.content-main .card-title a,
+.content-main .card-name a {
     color: var(--text-color);
     text-decoration: none;
     background-image: linear-gradient(var(--primary-color), var(--primary-color));
@@ -91,11 +111,15 @@
     background-size: 0 2px;
     transition: background-size 0.3s ease-in-out;
 }
-.related-posts .card-title a:hover {
+.related-posts .card-title a:hover,
+.content-main .card-title a:hover,
+.content-main .card-name a:hover {
     background-size: 100% 2px;
     color: var(--primary-color);
 }
-.related-posts .card-content p {
+.related-posts .card-content p,
+.content-main .card-content p,
+.content-main .card-description p {
     margin: 0;
     color: var(--text-light);
     font-size: var(--font-sm);
@@ -105,4 +129,6 @@
     overflow: hidden;
     transition: color var(--transition-slow);
 }
-.related-posts .card-news:hover .related-posts .card-content p {color: var(--text-color);}
+.related-posts .card-news:hover .related-posts .card-content p,
+.content-main .card-news:hover .content-main .card-content p,
+.content-main .card-heroes:hover .content-main .card-description p {color: var(--text-color);}

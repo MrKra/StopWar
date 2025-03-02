@@ -8,6 +8,7 @@ class CommentsManager {
         // Initialize main elements
         this.commentsBlock = document.querySelector('.block-comments');
         this.openReplies = null; // Переменная для отслеживания открытых ответов
+        this.openForm = null; // Переменная для отслеживания открытой формы
         this.init();
     }
 
@@ -38,8 +39,7 @@ class CommentsManager {
             // Show replies button only if there are replies
             if (replies.length > 0) {
                 repliesBtn.style.display = 'flex';
-                const showRepliesText = repliesBtn.querySelector('.show-replies');
-                showRepliesText.textContent = `Показать ${replies.length} ${this.declOfNum(replies.length, ['ответ', 'ответа', 'ответов'])}`;
+                this.updateRepliesCount(repliesBtn, replies.length);
                 
                 // Добавляем обработчик клика для кнопки
                 repliesBtn.addEventListener('click', () => {
@@ -57,7 +57,7 @@ class CommentsManager {
      */
     updateRepliesCount(button, count) {
         const showRepliesText = button.querySelector('.show-replies');
-        showRepliesText.textContent = `${count} ${this.declOfNum(count, ['ответ', 'ответа', 'ответов'])}`;
+        showRepliesText.textContent = `Показать ${count} ${this.declOfNum(count, ['ответ', 'ответа', 'ответов'])}`;
     }
 
     /**
@@ -78,42 +78,44 @@ class CommentsManager {
         const showRepliesText = button.querySelector('.show-replies');
         const isExpanded = button.getAttribute('aria-expanded') === 'true';
 
-        // Закрываем открытые ответы, если они не те же самые
         if (this.openReplies && this.openReplies !== comment) {
-            this.openReplies.querySelectorAll('.comment-replies').forEach(reply => {
-                reply.style.height = '0';
-                reply.style.opacity = '0';
-                setTimeout(() => {
-                    reply.style.display = 'none';
-                }, 300); // Ждем окончания анимации
-            });
-            this.openReplies = null; // Сбрасываем переменную
+            this.closeReplies(this.openReplies);
         }
 
         button.setAttribute('aria-expanded', !isExpanded);
-
         replies.forEach(reply => {
             if (isExpanded) {
-                // Скрываем ответы / Hide replies
-                reply.style.height = '0';
-                reply.style.opacity = '0';
-                setTimeout(() => {
-                    reply.style.display = 'none';
-                }, 300); // Ждем окончания анимации
-                showRepliesText.textContent = `Показать ${replies.length} ${this.declOfNum(replies.length, ['ответ', 'ответа', 'ответов'])}`;
+                this.closeReply(reply, showRepliesText, replies.length);
             } else {
-                // Показываем ответы / Show replies
-                reply.style.display = 'block';
-                requestAnimationFrame(() => {
-                    reply.style.height = `${reply.scrollHeight}px`;
-                    reply.style.opacity = '1';
-                });
-                showRepliesText.textContent = 'Скрыть ответы';
+                this.openReply(reply, showRepliesText);
             }
         });
 
-        // Сохраняем ссылку на открытые ответы
         this.openReplies = isExpanded ? null : comment;
+    }
+
+    closeReplies(comment) {
+        comment.querySelectorAll('.comment-replies').forEach(reply => this.closeReply(reply));
+    }
+
+    closeReply(reply, showRepliesText, repliesCount) {
+        reply.style.height = '0';
+        reply.style.opacity = '0';
+        setTimeout(() => {
+            reply.style.display = 'none';
+            if (showRepliesText) {
+                this.updateRepliesCount(showRepliesText.parentElement, repliesCount);
+            }
+        }, 300);
+    }
+
+    openReply(reply, showRepliesText) {
+        reply.style.display = 'block';
+        requestAnimationFrame(() => {
+            reply.style.height = `${reply.scrollHeight}px`;
+            reply.style.opacity = '1';
+        });
+        showRepliesText.textContent = 'Скрыть ответы';
     }
 
     /**
@@ -121,31 +123,64 @@ class CommentsManager {
      * Setup reply buttons
      */
     setupReplyButtons() {
-        const replyButtons = this.commentsBlock.querySelectorAll('.reply-btn');
-        let openForm = null; // Переменная для отслеживания открытой формы
-
-        replyButtons.forEach(button => {
-            button.addEventListener('click', (event) => {
+        this.commentsBlock.addEventListener('click', (event) => {
+            if (event.target.classList.contains('reply-btn')) {
                 const commentWrapper = event.target.closest('.comment-wrapper');
-                const existingForm = commentWrapper.nextElementSibling; // Проверяем следующий элемент после comment-action
-    
-                // Закрываем открытую форму, если она не та же самая
-                if (openForm && openForm !== existingForm) {
-                    openForm.remove(); // Удаляем открытую форму
-                    openForm = null; // Сбрасываем переменную
-                }
-    
+                const existingForm = commentWrapper.nextElementSibling;
+
                 // Проверяем, существует ли уже форма
+                // Check if the form already exists
                 if (existingForm && existingForm.classList.contains('reply-form')) {
-                    console.log('Форма уже существует, ничего не происходит.'); // Отладочный вывод
-                    return; // Если форма существует, выходим из функции
+                    console.log('Форма уже существует, ничего не происходит.');
+                    return;
                 }
-    
-                // Если формы нет, создаем новую
+
+                // Закрываем открытую форму, если она не та же самая
+                // Close the open form if it's not the same
+                if (this.openForm && this.openForm !== existingForm) {
+                    this.openForm.remove();
+                    this.openForm = null;
+                }
+
                 const replyFormHTML = this.createReplyForm();
                 commentWrapper.insertAdjacentHTML('afterend', replyFormHTML);
-                openForm = commentWrapper.nextElementSibling; // Сохраняем ссылку на открытую форму
-            });
+                this.openForm = commentWrapper.nextElementSibling;
+
+                // Добавляем обработчик для кнопки "Отмена"
+                // Add handler for the "Cancel" button
+                const cancelButton = this.openForm.querySelector('.reply-form__button-cancel');
+                cancelButton.addEventListener('click', () => {
+                    this.closeReplyForm(this.openForm);
+                });
+
+                // Добавляем обработчик для отправки формы
+                // Add handler for form submission
+                const submitButton = this.openForm.querySelector('.reply-form__button reply-form__button-submit');
+                submitButton.addEventListener('click', (event) => {
+                    event.preventDefault(); // Prevent default form submission
+                    const nameInput = this.openForm.querySelector('.reply-form__input[name="name"]');
+                    const emailInput = this.openForm.querySelector('.reply-form__input[name="email"]');
+                    const commentTextarea = this.openForm.querySelector('.reply-form__textarea');
+
+                    // Проверяем вводимые данные с использованием продвинутого обработчика
+                    if (this.advancedFilterInputData(nameInput.value, emailInput.value, commentTextarea.value)) {
+                        // Здесь можно добавить логику для обработки отправки комментария
+                        const newCommentHTML = `
+                            <div class='comment-wrapper'>
+                                <div class='comment-text'>${commentTextarea.value}</div>
+                                <div class='comment-author'>${nameInput.value}</div>
+                            </div>
+                        `;
+                        this.commentsBlock.insertAdjacentHTML('beforeend', newCommentHTML);
+
+                        // Очищаем форму после отправки
+                        nameInput.value = '';
+                        emailInput.value = '';
+                        commentTextarea.value = '';
+                        this.closeReplyForm(this.openForm); // Закрываем форму
+                    }
+                });
+            }
         });
     }
 
@@ -155,25 +190,19 @@ class CommentsManager {
      */
     toggleReplyForm(form) {
         const isVisible = form.style.display === 'block';
-        
-        if (isVisible) {
-            form.style.opacity = '0';
-            form.style.transition = 'opacity 0.3s ease, height 0.3s ease';
-            setTimeout(() => {
-                form.style.display = 'none';
+        form.style.opacity = isVisible ? '0' : '1';
+        form.style.transition = 'opacity 0.3s ease, height 0.3s ease';
+        setTimeout(() => {
+            form.style.display = isVisible ? 'none' : 'block';
+            form.style.height = isVisible ? '0' : 'auto';
+            if (!isVisible) {
+                const height = form.scrollHeight + 'px';
                 form.style.height = '0';
-            }, 300);
-        } else {
-            form.style.display = 'block';
-            form.style.height = 'auto';
-            const height = form.scrollHeight + 'px';
-            form.style.height = '0';
-            requestAnimationFrame(() => {
-                form.style.transition = 'opacity 0.3s ease, height 0.3s ease';
-                form.style.opacity = '1';
-                form.style.height = height;
-            });
-        }
+                requestAnimationFrame(() => {
+                    form.style.height = height;
+                });
+            }
+        }, 300);
     }
 
     /**
@@ -203,14 +232,8 @@ class CommentsManager {
      */
     toggleReadMore(textElement, button) {
         const isExpanded = textElement.classList.contains('expanded');
-        
-        if (isExpanded) {
-            textElement.classList.remove('expanded');
-            button.textContent = 'читать полностью';
-        } else {
-            textElement.classList.add('expanded');
-            button.textContent = 'свернуть';
-        }
+        textElement.classList.toggle('expanded', !isExpanded);
+        button.textContent = isExpanded ? 'читать полностью' : 'свернуть';
     }
 
     createReplyForm() {
@@ -237,9 +260,68 @@ class CommentsManager {
             </form>
         `;
     }
+
+    closeReplyForm(form) {
+        const nameInput = form.querySelector('.reply-form__input[name="name"]');
+        const commentTextarea = form.querySelector('.reply-form__textarea');
+        const emailInput = form.querySelector('.reply-form__input[name="email"]');
+
+        // Сохраняем значения полей, кроме email
+        const nameValue = nameInput.value;
+        const commentValue = commentTextarea.value;
+
+        // Удаляем форму из DOM
+        form.remove();
+
+        // Восстанавливаем значения
+        nameInput.value = nameValue;
+        commentTextarea.value = commentValue;
+        emailInput.value = ''; // Очищаем поле email
+
+        // Сбрасываем переменную openForm
+        this.openForm = null; // Сброс переменной openForm для возможности повторного открытия
+    }
+
+    /**
+     * Продвинутый обработчик вводимых данных в форму комментария
+     * Advanced input data handler for the comment form
+     */
+    advancedFilterInputData(name, email, comment) {
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const maxCommentLength = 1000; // Максимальная длина комментария
+
+        // Удаляем лишние пробелы
+        comment = comment.trim();
+
+        // Проверка на пустые поля
+        if (!name || !comment) {
+            alert('Имя и комментарий не могут быть пустыми.'); // Name and comment cannot be empty.
+            return false;
+        }
+
+        // Проверка длины комментария
+        if (comment.length > maxCommentLength) {
+            alert(`Комментарий не может превышать ${maxCommentLength} символов.`); // Comment cannot exceed max length.
+            return false;
+        }
+
+        // Проверка на корректный email
+        if (!emailPattern.test(email)) {
+            alert('Введите корректный email.'); // Enter a valid email.
+            return false;
+        }
+
+        // Проверка на дубликаты комментариев
+        const existingComments = Array.from(this.commentsBlock.querySelectorAll('.comment-text'));
+        const isDuplicate = existingComments.some(existingComment => existingComment.textContent.trim() === comment);
+        if (isDuplicate) {
+            alert('Этот комментарий уже был отправлен.'); // This comment has already been submitted.
+            return false;
+        }
+
+        return true;
+    }
 }
-
-
 
 // Инициализация после загрузки DOM
 // Initialize after DOM load

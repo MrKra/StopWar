@@ -117,7 +117,7 @@
 /* Style Add Replyes form */
 .block-comments .reply-form,
 .block-comments .comment-replies .reply-form {
-    margin: 1rem auto;
+    margin: 1rem auto 0 auto;
     padding: 1rem;
     background: var(--bg-secondary);
     border-radius: var(--radius-md);
