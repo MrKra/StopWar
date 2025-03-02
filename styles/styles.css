@@ -21,6 +21,18 @@
 
 
 /* Base styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    width: 100%;
+    overflow-x: hidden;
+    max-width: 100vw;
+}
+
 body {
     font-family: "Roboto", sans-serif;
     font-size: var(--font-base);
@@ -29,6 +41,7 @@ body {
     background: var(--bg-secondary);
     color: var(--text-color);
     min-height: 100vh;
+    position: relative;
 }
 
 .main-wrapper {
@@ -40,16 +53,23 @@ body {
     min-width: 240px;
     min-height: 100vh;
     background: var(--bg-primary);
+    width: 100%;
+    overflow: hidden;
 }
-.wrapper{
+
+.wrapper {
     background: var(--bg-primary);
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr) !important;
+    width: 100%;
+    padding: 0 var(--spacing-sm);
 }
-.content-main{
+
+.content-main {
     margin: var(--spacing-md) 0;
-    padding: 0;
+    padding: 0 var(--spacing-sm);
     width: 100%;
     background: var(--bg-primary);
+    overflow: hidden;
 }
 
 /* Typography */
@@ -156,11 +176,71 @@ blockquote footer{
 }
 .section-title::before{margin-left: -90%;}   
 .section-title::after{margin-right: -90%;}
-.grid{
+.grid {
     display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: var(--spacing-md);
-    padding: var(--spacing-md);
-    max-width: var(--container-xl);
-    margin: 0 auto;
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    .grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+}
+
+@media (max-width: 576px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .wrapper, .content-main {
+        padding: 0 var(--spacing-xs);
+    }
+}
+
+/* Prevent overflow in images */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Fix for tables */
+table {
+    width: 100%;
+    table-layout: fixed;
+    overflow-x: auto;
+    display: block;
+}
+
+@media (min-width: 768px) {
+    table {
+        display: table;
+    }
+}
+
+/* Добавьте в основной CSS файл */
+body.menu-open {
+    overflow: hidden;
+    padding-right: var(--scrollbar-width, 0px); /* Компенсация скроллбара */
+}
+
+/* Стили для скроллбара в мобильном меню */
+.header-nav {
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-color) var(--bg-secondary);
+}
+
+.header-nav::-webkit-scrollbar {
+    width: 6px;
+}
+
+.header-nav::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+}
+
+.header-nav::-webkit-scrollbar-thumb {
+    background-color: var(--primary-color);
+    border-radius: 3px;
 }
 

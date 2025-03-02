@@ -2,9 +2,11 @@
 .content-tabs {
     width: 100%;
     margin: var(--spacing-lg) 0;
+    overflow: hidden;
 }
 .content-tabs .tabs-wrapper{
     margin: 0 var(--spacing-md);
+    width: auto;
 }
 .content-tabs .tab-content.hidden {display: none;}
 
@@ -19,6 +21,8 @@
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-sm);
     margin-bottom: var(--spacing-md);
+    flex-wrap: wrap;
+    width: 100%;
 }
 
 /* Стили кнопок */
@@ -123,10 +127,13 @@
 }
 
 @media (max-width: 768px) {
+    .content-tabs .tabs-wrapper {
+        margin: 0 var(--spacing-sm);
+    }
+    
     .content-tabs .tabs-buttons {
-        flex-wrap: wrap;
+        padding: var(--spacing-sm);
         gap: var(--spacing-sm);
-        padding: var(--spacing-md);
     }
 
     .content-tabs .tabs-buttons .tab-button {
@@ -145,8 +152,8 @@
     }
 }
 
-@media (max-width: 480px) {
-    .content-tabs .tabs-buttons .tab-button {
-        min-width: 100%;
+@media (max-width: 576px) {
+    .content-tabs .tab-content {
+        grid-template-columns: 1fr;
     }
 }

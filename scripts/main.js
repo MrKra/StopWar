@@ -11,8 +11,8 @@ jQuery.noConflict();
     const $window = $(window);
 
     /**
-     * Инициализация слайдера с оптимизированными настройками
-     * Slider initialization with optimized settings
+     * Инициализация слайдера с отключенными анимациями
+     * Slider initialization with disabled animations
      */
     function initSlider() {
         const $slider = $('#slider');
@@ -20,15 +20,13 @@ jQuery.noConflict();
         if (!$slider.length) return;
 
         const slickConfig = {
-            adaptiveHeight: true,
+            adaptiveHeight: false,
             autoplay: true,
             autoplaySpeed: 5000,
             arrows: $window.width() > 768,
-            fade: true,
-            dots: false,
-            infinite: true,
-            speed: 500,
+            fade: false,
             cssEase: 'linear',
+            speed: 300,
             pauseOnHover: true,
             lazyLoad: 'ondemand',
             responsive: [{
@@ -278,6 +276,35 @@ jQuery.noConflict();
     }
 
     /**
+     * Модифицированная функция для липкого header без анимации
+     */
+    function initStickyHeaderWithObserver() {
+        const header = document.querySelector('.header');
+        const body = document.body;
+        
+        if (!header) return;
+        
+        // Сохраняем высоту header
+        const headerHeight = header.offsetHeight;
+        document.documentElement.style.setProperty('--header-height', `${headerHeight}px`);
+        
+        // Сразу применяем padding к body, чтобы избежать прыжков
+        body.style.paddingTop = `${headerHeight}px`;
+        header.classList.add('fixed');
+        
+        // Обновляем только тень при прокрутке
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY || window.pageYOffset;
+            
+            if (scrollY > 10) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        }, { passive: true });
+    }
+
+    /**
      * Инициализация всех компонентов при загрузке DOM
      * Initialize all components on DOM load
      */
@@ -296,6 +323,10 @@ jQuery.noConflict();
         initShareButtons();
         initReadingTime();
         initHeaderSearch();
+        initMobileMenu();
+        initStickyHeaderWithObserver();
+        checkHeaderStructure();
+        stickyPolyfill();
     });
 
     /**
@@ -482,6 +513,129 @@ jQuery.noConflict();
             }
         `;
         document.head.appendChild(style);
+    }
+
+    function initMobileMenu() {
+        // Вычисляем ширину скроллбара
+        const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+        document.documentElement.style.setProperty('--scrollbar-width', `${scrollbarWidth}px`);
+        
+        const burger = document.querySelector('.burger-menu');
+        const nav = document.querySelector('.header-nav');
+        const overlay = document.querySelector('.header-overlay');
+        const body = document.body;
+
+        if (!burger || !nav || !overlay) return;
+
+        burger.addEventListener('click', () => {
+            burger.classList.toggle('active');
+            nav.classList.toggle('active');
+            overlay.classList.toggle('active');
+            body.classList.toggle('menu-open');
+        });
+
+        overlay.addEventListener('click', () => {
+            burger.classList.remove('active');
+            nav.classList.remove('active');
+            overlay.classList.remove('active');
+            body.classList.remove('menu-open');
+        });
+
+        // Закрытие по Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                burger.classList.remove('active');
+                nav.classList.remove('active');
+                overlay.classList.remove('active');
+                body.classList.remove('menu-open');
+            }
+        });
+
+        // Обработка клика по пунктам с подменю на мобильных
+        const menuItemsWithSubmenu = nav.querySelectorAll('.has-submenu > a');
+        
+        menuItemsWithSubmenu.forEach(item => {
+            item.addEventListener('click', (e) => {
+                if (window.innerWidth <= 992) {
+                    e.preventDefault();
+                    const parent = item.parentElement;
+                    const submenu = parent.querySelector('.sub-list');
+                    
+                    parent.classList.toggle('active');
+                    submenu.classList.toggle('active');
+                }
+            });
+        });
+    }
+
+    // Добавьте эту функцию для проверки структуры DOM
+    function checkHeaderStructure() {
+        const header = document.querySelector('.header');
+        const mainWrapper = document.querySelector('.main-wrapper');
+        
+        if (!header || !mainWrapper) {
+            console.error('Header or main-wrapper not found');
+            return;
+        }
+        
+        if (!mainWrapper.contains(header)) {
+            console.error('Header is not inside main-wrapper');
+            return;
+        }
+        
+        console.log('Header structure is correct');
+        
+        // Проверяем стили
+        const headerStyles = window.getComputedStyle(header);
+        console.log('Header position:', headerStyles.position);
+        console.log('Header top:', headerStyles.top);
+        console.log('Header z-index:', headerStyles.zIndex);
+    }
+
+    /**
+     * Полифилл для position: sticky
+     * Polyfill for position: sticky
+     */
+    function stickyPolyfill() {
+        const elements = document.querySelectorAll('.header');
+        
+        if (!elements.length) return;
+        
+        elements.forEach(element => {
+            const originalStyles = window.getComputedStyle(element);
+            const originalPosition = originalStyles.position;
+            
+            if (originalPosition !== 'sticky' && originalPosition !== '-webkit-sticky') {
+                const offsetTop = element.offsetTop;
+                const offsetHeight = element.offsetHeight;
+                
+                window.addEventListener('scroll', () => {
+                    const scrollY = window.scrollY || window.pageYOffset;
+                    
+                    if (scrollY > offsetTop) {
+                        element.style.position = 'fixed';
+                        element.style.top = '0';
+                        element.style.width = '100%';
+                        element.style.zIndex = '500';
+                        
+                        // Добавляем отступ, чтобы контент не прыгал
+                        if (!element.nextElementSibling.style.paddingTop) {
+                            element.nextElementSibling.style.paddingTop = offsetHeight + 'px';
+                        }
+                    } else {
+                        element.style.position = '';
+                        element.style.top = '';
+                        element.style.width = '';
+                        element.style.zIndex = '';
+                        
+                        // Убираем отступ
+                        if (element.nextElementSibling.style.paddingTop) {
+                            element.nextElementSibling.style.paddingTop = '';
+                        }
+                    }
+                }, { passive: true });
+            }
+        });
     }
 
 })(jQuery);
